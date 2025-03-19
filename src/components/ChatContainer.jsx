@@ -1,12 +1,13 @@
-import { useChatStore } from "../store/useChatStore";
-import { useEffect, useRef } from "react";
+import { useChatStore } from "../store/useChatStore"; // Import hook để quản lý trạng thái chat
+import { useEffect, useRef } from "react"; // Import các hook từ React
 
-import ChatHeader from "./ChatHeader";
-import MessageInput from "./MessageInput";
-import MessageSkeleton from "./skeletons/MessageSkeleton";
-import { useAuthStore } from "../store/useAuthStore";
-import { formatMessageTime } from "../lib/utils";
+import ChatHeader from "./ChatHeader"; // Import component header của chat
+import MessageInput from "./MessageInput"; // Import component nhập tin nhắn
+import MessageSkeleton from "./skeletons/MessageSkeleton"; // Import skeleton cho tin nhắn
+import { useAuthStore } from "../store/useAuthStore"; // Import hook để quản lý trạng thái xác thực
+import { formatMessageTime } from "../lib/utils"; // Import hàm định dạng thời gian tin nhắn
 
+// Component ChatContainer - hiển thị giao diện chat
 const ChatContainer = () => {
   const {
     messages,
@@ -15,78 +16,79 @@ const ChatContainer = () => {
     selectedUser,
     subscribeToMessages,
     unsubscribeFromMessages,
-  } = useChatStore();
-  const { authUser } = useAuthStore();
-  const messageEndRef = useRef(null);
+  } = useChatStore(); // Lấy các giá trị từ store chat
+  const { authUser } = useAuthStore(); // Lấy thông tin người dùng xác thực
+  const messageEndRef = useRef(null); // Tham chiếu đến cuối danh sách tin nhắn
 
   useEffect(() => {
-    getMessages(selectedUser._id);
+    getMessages(selectedUser._id); // Lấy tin nhắn cho người dùng đã chọn
 
-    subscribeToMessages();
+    subscribeToMessages(); // Đăng ký nhận tin nhắn mới
 
-    return () => unsubscribeFromMessages();
+    return () => unsubscribeFromMessages(); // Hủy đăng ký khi component bị hủy
   }, [selectedUser._id, getMessages, subscribeToMessages, unsubscribeFromMessages]);
 
   useEffect(() => {
     if (messageEndRef.current && messages) {
-      messageEndRef.current.scrollIntoView({ behavior: "smooth" });
+      messageEndRef.current.scrollIntoView({ behavior: "smooth" }); // Cuộn đến cuối danh sách tin nhắn
     }
   }, [messages]);
 
   if (isMessagesLoading) {
     return (
-      <div className="flex-1 flex flex-col overflow-auto">
-        <ChatHeader />
-        <MessageSkeleton />
-        <MessageInput />
+      <div className="flex-1 flex flex-col overflow-auto"> {/* Container chính cho giao diện chat */}
+        <ChatHeader /> {/* Hiển thị header của chat */}
+        <MessageSkeleton /> {/* Hiển thị skeleton khi đang tải tin nhắn */}
+        <MessageInput /> {/* Hiển thị input để nhập tin nhắn */}
       </div>
     );
   }
 
   return (
-    <div className="flex-1 flex flex-col overflow-auto">
-      <ChatHeader />
+    <div className="flex-1 flex flex-col overflow-auto"> {/* Container chính cho giao diện chat */}
+      <ChatHeader /> {/* Hiển thị header của chat */}
 
-      <div className="flex-1 overflow-y-auto p-4 space-y-4">
-        {messages.map((message) => (
+      <div className="flex-1 overflow-y-auto p-4 space-y-4"> {/* Container cho danh sách tin nhắn */}
+        {messages.map((message) => ( // Lặp qua từng tin nhắn
           <div
             key={message._id}
-            className={`chat ${message.senderId === authUser._id ? "chat-end" : "chat-start"}`}
-            ref={messageEndRef}
+            className={`chat ${message.senderId === authUser._id ? "chat-end" : "chat-start"}`} // Xác định vị trí tin nhắn
+            ref={messageEndRef} // Tham chiếu đến cuối danh sách tin nhắn
           >
-            <div className=" chat-image avatar">
+            <div className=" chat-image avatar"> {/* Hiển thị avatar của người gửi */}
               <div className="size-10 rounded-full border">
                 <img
                   src={
                     message.senderId === authUser._id
-                      ? authUser.profilePic || "/avatar.png"
-                      : selectedUser.profilePic || "/avatar.png"
+                      ? authUser.profilePic || "/avatar.png" // Avatar của người gửi
+                      : selectedUser.profilePic || "/avatar.png" // Avatar của người nhận
                   }
-                  alt="profile pic"
+                  alt="profile pic" // Mô tả cho hình ảnh
                 />
               </div>
             </div>
-            <div className="chat-header mb-1">
+            <div className="chat-header mb-1"> {/* Hiển thị thời gian tin nhắn */}
               <time className="text-xs opacity-50 ml-1">
-                {formatMessageTime(message.createdAt)}
+                {formatMessageTime(message.createdAt)} {/* Định dạng thời gian tin nhắn */}
               </time>
             </div>
-            <div className="chat-bubble flex flex-col">
+            <div className="chat-bubble flex flex-col"> {/* Hiển thị nội dung tin nhắn */}
               {message.image && (
                 <img
                   src={message.image}
-                  alt="Attachment"
+                  alt="Attachment" // Mô tả cho hình ảnh đính kèm
                   className="sm:max-w-[200px] rounded-md mb-2"
                 />
               )}
-              {message.text && <p>{message.text}</p>}
+              {message.text && <p>{message.text}</p>} {/* Hiển thị văn bản tin nhắn */}
             </div>
           </div>
         ))}
       </div>
 
-      <MessageInput />
+      <MessageInput /> {/* Hiển thị input để nhập tin nhắn */}
     </div>
   );
 };
-export default ChatContainer;
+
+export default ChatContainer; // Xuất thành phần ChatContainer
