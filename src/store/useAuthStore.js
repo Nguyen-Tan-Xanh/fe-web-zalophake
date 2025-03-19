@@ -3,7 +3,7 @@ import { axiosInstance } from "../lib/axios.js"; // Import instance axios để 
 import toast from "react-hot-toast"; // Import thư viện thông báo
 import { io } from "socket.io-client"; // Import thư viện socket.io để kết nối WebSocket
 
-const BASE_URL = import.meta.env.MODE === "development" ? "http://localhost:5001" : "/"; // Địa chỉ cơ sở cho socket
+const BASE_URL = import.meta.env.MODE === "development" ? "http://zalo-phake-alb-1855637264.ap-southeast-1.elb.amazonaws.com/api" : "/"; // Địa chỉ cơ sở cho socket
 
 // Tạo store sử dụng zustand
 export const useAuthStore = create((set, get) => ({

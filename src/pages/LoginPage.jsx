@@ -2,7 +2,7 @@ import { useState } from "react"; // Import hook useState từ React để quả
 import { useAuthStore } from "../store/useAuthStore"; // Import hook tùy chỉnh để quản lý xác thực
 import AuthImagePattern from "../components/AuthImagePattern"; // Import thành phần hình ảnh/mẫu
 import { Link } from "react-router-dom"; // Import Link từ react-router-dom để điều hướng giữa các trang
-import { Eye, EyeOff, Loader2, Lock, Mail, MessageSquare } from "lucide-react"; // Import các biểu tượng từ lucide-react
+import { Eye, EyeOff, Loader2, Lock, Phone, MessageSquare } from "lucide-react"; // Import các biểu tượng từ lucide-react
 
 const LoginPage = () => {
   // Trạng thái để hiển thị/ẩn mật khẩu
@@ -10,7 +10,7 @@ const LoginPage = () => {
 
   // Trạng thái lưu trữ thông tin biểu mẫu
   const [formData, setFormData] = useState({
-    email: "", // Địa chỉ email
+    phone: "", // Số điện thoại
     password: "", // Mật khẩu
   });
 
@@ -44,21 +44,22 @@ const LoginPage = () => {
 
           {/* Biểu mẫu */}
           <form onSubmit={handleSubmit} className="space-y-6"> {/* Biểu mẫu đăng nhập */}
-            {/* Email */}
+            
+            {/* Phone Number */}
             <div className="form-control">
               <label className="label">
-                <span className="label-text font-medium">Email</span> {/* Nhãn cho trường email */}
+                <span className="label-text font-medium">Phone Number</span> {/* Nhãn cho trường số điện thoại */}
               </label>
               <div className="relative">
                 <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                  <Mail className="h-5 w-5 text-base-content/40" /> {/* Biểu tượng email */}
+                  <Phone className="h-5 w-5 text-base-content/40" /> {/* Biểu tượng số điện thoại */}
                 </div>
                 <input
-                  type="email"
-                  className={`input input-bordered w-full pl-10`} // Trường nhập email
-                  placeholder="you@example.com" // Placeholder cho trường email
-                  value={formData.email} // Giá trị của trường
-                  onChange={(e) => setFormData({ ...formData, email: e.target.value })} // Cập nhật giá trị khi thay đổi
+                  type="tel" // Thay đổi loại thành "tel" cho số điện thoại
+                  className={`input input-bordered w-full pl-10`} // Trường nhập số điện thoại
+                  placeholder="123-456-7890" // Placeholder cho trường số điện thoại
+                  value={formData.phone} // Giá trị của trường
+                  onChange={(e) => setFormData({ ...formData, phone: e.target.value })} // Cập nhật giá trị khi thay đổi
                 />
               </div>
             </div>
