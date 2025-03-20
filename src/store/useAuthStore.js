@@ -62,7 +62,7 @@ export const useAuthStore = create((set, get) => ({
   // Hàm đăng xuất người dùng
   logout: async () => {
     try {
-      await axiosInstance.post("/auth/logout"); // Gửi yêu cầu đăng xuất
+      //await axiosInstance.post("/auth/logout"); // Gửi yêu cầu đăng xuất
       set({ authUser: null }); // Đặt lại thông tin người dùng
       toast.success("Logged out successfully"); // Hiển thị thông báo thành công
       get().disconnectSocket(); // Ngắt kết nối socket
