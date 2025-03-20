@@ -1,6 +1,6 @@
 import { useState } from "react"; // Import hook useState từ React để quản lý trạng thái
 import { useAuthStore } from "../store/useAuthStore"; // Import hook tùy chỉnh để quản lý xác thực
-import { Eye, EyeOff, Loader2, Lock, Mail, MessageSquare, User } from "lucide-react"; // Import các biểu tượng từ lucide-react
+import { Eye, EyeOff, Loader2, Lock, Phone, MessageSquare, User } from "lucide-react"; // Import các biểu tượng từ lucide-react
 import { Link } from "react-router-dom"; // Import Link từ react-router-dom để điều hướng giữa các trang
 
 import AuthImagePattern from "../components/AuthImagePattern"; // Import thành phần hình ảnh/mẫu
@@ -13,7 +13,7 @@ const SignUpPage = () => {
   // Trạng thái lưu trữ thông tin biểu mẫu
   const [formData, setFormData] = useState({
     fullName: "", // Tên đầy đủ
-    email: "", // Địa chỉ email
+    phone: "", // Số điện thoại
     password: "", // Mật khẩu
   });
 
@@ -23,8 +23,8 @@ const SignUpPage = () => {
   // Hàm kiểm tra tính hợp lệ của biểu mẫu
   const validateForm = () => {
     if (!formData.fullName.trim()) return toast.error("Full name is required"); // Kiểm tra tên đầy đủ
-    if (!formData.email.trim()) return toast.error("Email is required"); // Kiểm tra email
-    if (!/\S+@\S+\.\S+/.test(formData.email)) return toast.error("Invalid email format"); // Kiểm tra định dạng email
+    if (!formData.phone.trim()) return toast.error("Phone number is required"); // Kiểm tra số điện thoại
+    if (!/^\d{10}$/.test(formData.phone)) return toast.error("Invalid phone number format"); // Kiểm tra định dạng số điện thoại
     if (!formData.password) return toast.error("Password is required"); // Kiểm tra mật khẩu
     if (formData.password.length < 6) return toast.error("Password must be at least 6 characters"); // Kiểm tra độ dài mật khẩu
 
@@ -81,21 +81,21 @@ const SignUpPage = () => {
               </div>
             </div>
 
-            {/* Email */}
+            {/* Phone Number */}
             <div className="form-control">
               <label className="label">
-                <span className="label-text font-medium">Email</span> {/* Nhãn cho trường email */}
+                <span className="label-text font-medium">Phone Number</span> {/* Nhãn cho trường số điện thoại */}
               </label>
               <div className="relative">
                 <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                  <Mail className="size-5 text-base-content/40" /> {/* Biểu tượng email */}
+                  <Phone className="size-5 text-base-content/40" /> {/* Biểu tượng số điện thoại */}
                 </div>
                 <input
-                  type="email"
+                  type="tel" // Thay đổi loại thành "tel" cho số điện thoại
                   className={`input input-bordered w-full pl-10`}
-                  placeholder="you@example.com" // Placeholder cho trường email
-                  value={formData.email} // Giá trị của trường
-                  onChange={(e) => setFormData({ ...formData, email: e.target.value })} // Cập nhật giá trị khi thay đổi
+                  placeholder="123-456-7890" // Placeholder cho trường số điện thoại
+                  value={formData.phone} // Giá trị của trường
+                  onChange={(e) => setFormData({ ...formData, phone: e.target.value })} // Cập nhật giá trị khi thay đổi
                 />
               </div>
             </div>
