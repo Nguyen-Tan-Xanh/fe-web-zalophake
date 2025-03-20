@@ -10,7 +10,7 @@ const LoginPage = () => {
 
   // Trạng thái lưu trữ thông tin biểu mẫu
   const [formData, setFormData] = useState({
-    phone: "", // Số điện thoại
+    phone_number: "", // Số điện thoại
     password: "", // Mật khẩu
   });
 
@@ -59,7 +59,7 @@ const LoginPage = () => {
                   className={`input input-bordered w-full pl-10`} // Trường nhập số điện thoại
                   placeholder="123-456-7890" // Placeholder cho trường số điện thoại
                   value={formData.phone} // Giá trị của trường
-                  onChange={(e) => setFormData({ ...formData, phone: e.target.value })} // Cập nhật giá trị khi thay đổi
+                  onChange={(e) => setFormData({ ...formData, phone_number: e.target.value })} // Cập nhật giá trị khi thay đổi
                 />
               </div>
             </div>

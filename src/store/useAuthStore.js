@@ -53,7 +53,7 @@ export const useAuthStore = create((set, get) => ({
       toast.success("Logged in successfully"); // Hiển thị thông báo thành công
       get().connectSocket(); // Kết nối socket
     } catch (error) {
-      toast.error(error.response.data.message); // Hiển thị thông báo lỗi
+      toast.error("Login failed. Please try again."); // Hiển thị thông báo lỗi
     } finally {
       set({ isLoggingIn: false }); // Đặt lại trạng thái đăng nhập
     }
