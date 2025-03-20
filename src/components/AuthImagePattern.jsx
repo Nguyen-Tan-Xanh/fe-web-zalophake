@@ -8,12 +8,12 @@ const AuthImagePattern = ({ title, subtitle }) => {
             <div
               key={i}
               className={`aspect-square rounded-2xl bg-primary/10 ${
-                i % 2 === 0 ? "animate-pulse" : "" // Thêm hiệu ứng nhấp nháy cho các hình ảnh chẵn
+                i % 2 === 0 ? "animate-pulse scale-300" : "" // Thêm hiệu ứng nhấp nháy cho các hình ảnh chẵn
               }`}
             />
           ))}
         </div>
-        <h2 className="text-2xl font-bold mb-4">{title}</h2> {/* Tiêu đề */}
+        {/* <h2 className="text-2xl font-bold mb-4">{title}</h2> Tiêu đề */}
         <p className="text-base-content/60">{subtitle}</p> {/* Phụ đề */}
       </div>
     </div>

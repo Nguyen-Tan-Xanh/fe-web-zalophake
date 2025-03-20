@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom"; // Import Link từ react-router-dom để điều hướng giữa các trang
 import { useAuthStore } from "../store/useAuthStore"; // Import hook tùy chỉnh để quản lý xác thực
-import { LogOut, MessagesSquare, SlidersHorizontal, CircleUserRound } from "lucide-react"; // Import các biểu tượng từ lucide-react
+import { LogOut, Twitter, SlidersHorizontal, CircleUserRound } from "lucide-react"; // Import các biểu tượng từ lucide-react
 
 const Navbar = () => {
   const { logout, authUser } = useAuthStore(); // Lấy hàm logout và thông tin người dùng từ store
@@ -17,7 +17,7 @@ const Navbar = () => {
           <div className="flex items-center gap-8"> 
             <Link to="/" className="flex items-center gap-2.5 hover:opacity-80 transition-all"> {/* Liên kết đến trang chính */}
               <div className="size-9 rounded-lg bg-primary/10 flex items-center justify-center"> {/* Biểu tượng tin nhắn */}
-                <MessagesSquare className="w-5 h-5 text-primary" />
+                <Twitter className="w-5 h-5 text-primary" />
               </div>
               <h1 className="text-lg font-bold">Zalo Phake</h1> {/* Tên ứng dụng */}
             </Link>

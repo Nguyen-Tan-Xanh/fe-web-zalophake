@@ -2,7 +2,7 @@ import { useState } from "react"; // Import hook useState từ React để quả
 import { useAuthStore } from "../store/useAuthStore"; // Import hook tùy chỉnh để quản lý xác thực
 import AuthImagePattern from "../components/AuthImagePattern"; // Import thành phần hình ảnh/mẫu
 import { Link } from "react-router-dom"; // Import Link từ react-router-dom để điều hướng giữa các trang
-import { Eye, EyeOff, Loader2, Lock, Phone, MessageSquare } from "lucide-react"; // Import các biểu tượng từ lucide-react
+import { Eye, EyeOff, Loader2, Lock, Phone, Twitter } from "lucide-react"; // Import các biểu tượng từ lucide-react
 
 const LoginPage = () => {
   // Trạng thái để hiển thị/ẩn mật khẩu
@@ -35,10 +35,10 @@ const LoginPage = () => {
                 className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center group-hover:bg-primary/20
               transition-colors"
               >
-                <MessageSquare className="w-6 h-6 text-primary" /> {/* Biểu tượng tin nhắn */}
+                <Twitter className="w-6 h-6 text-primary" /> {/* Biểu tượng tin nhắn */}
               </div>
-              <h1 className="text-2xl font-bold mt-2">Welcome Back</h1> {/* Tiêu đề */}
-              <p className="text-base-content/60">Sign in to your account</p> {/* Mô tả */}
+              <h1 className="text-2xl font-bold mt-2">Welcome Back!</h1> {/* Tiêu đề */}
+              <p className="text-base-content/60">Sign in to your account.</p> {/* Mô tả */}
             </div>
           </div>
 
