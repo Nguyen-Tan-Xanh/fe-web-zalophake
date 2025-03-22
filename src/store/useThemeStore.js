@@ -2,7 +2,7 @@ import { create } from "zustand"; // Import thư viện zustand để tạo stor
 
 // Tạo store sử dụng zustand
 export const useThemeStore = create((set) => ({
-  theme: localStorage.getItem("chat-theme") || "coffee", // Lấy theme từ localStorage hoặc mặc định là "coffee"
+  theme: localStorage.getItem("chat-theme") || "cyberpunk", // Lấy theme từ localStorage hoặc mặc định là "coffee"
   
   // Hàm thiết lập theme
   setTheme: (theme) => {
